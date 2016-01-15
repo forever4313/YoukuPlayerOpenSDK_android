@@ -1,0 +1,8 @@
+include ':YoukuLoginSDK'
+include ':YoukuPlayerOpenSDK'
+include ':PlayerDemo'
+
+//因为Android Studio目前不支持修改项目名称，使用IDE时注释掉下边的代码
+//TODO 发布library前恢复下边↓的代码
+//project(':YoukuPlayerOpenSDK').name = SDK_PROJECT_NAME
+//project(':PlayerDemo').name = DEMO_PROJECT_NAME

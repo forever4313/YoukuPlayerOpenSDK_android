@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.playerdemo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!-- uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" /-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
+    <!-- <uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW"/> -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name">
+       <activity
+            android:name="com.example.playerdemo.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> 
+        <!-- 播放界面demo -->
+        <activity 
+            android:name=".PlayerActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:exported="true">
+        </activity>
+        <!-- 已经缓存的视频界面demo -->
+        <activity
+            android:name=".CachedActivity"
+            android:launchMode="singleTask"            
+            />
+        <!-- 正在缓存的视频展示界面demo -->
+        <activity
+            android:name=".CachingActivity"
+            android:launchMode="singleTask"
+            />        
+        <!-- 以下两个为下载时需要的添加的Service -->
+       <service
+            android:name="com.youku.service.download.DownloadService"
+            android:label="Youku Download Service"
+            android:process=":download" >
+            <intent-filter android:priority="1000" > 
+                <action android:name="com.youku.service.download.DownloadService" />
+
+                <category android:name="com.youku.service.download.DownloadService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.youku.service.acc.AcceleraterService"
+            android:process=":accelerater" >
+            <intent-filter android:priority="1000" > 
+                <action android:name="com.youku.service.acc.AcceleraterService" />
+
+                <category android:name="com.youku.service.acc.AcceleraterService" />
+            </intent-filter>
+        </service>
+        
+        <!-- 以下为增加登陆功能需要添加的信息 -->
+        <activity   
+            android:name="com.youku.login.activity.LoginRegistCardViewDialogActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name="com.youku.login.sns.AuthorizationLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop" > 
+        </activity>
+        <activity
+            android:name="com.youku.login.Zxing.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan" >
+            <intent-filter> 
+                <action android:name="com.youku.action.QRCODE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> 
+        <activity
+            android:name="com.youku.login.activity.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"> 
+            <intent-filter>
+                <action android:name="com.youku.action.YoukuWebview" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- client_id及client_secret配置  这里需要切换为自己的id和secret -->
+        <meta-data android:name="client_id" android:value="7c56b43a18b3f1b5"/>
+        <meta-data android:name="client_secret" android:value="d0b53dd3c83cacd21d715079d27f8459"/>
+    </application>
+
+</manifest>
