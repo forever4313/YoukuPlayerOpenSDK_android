@@ -116,8 +116,8 @@
         </activity>
         
         <!-- client_id及client_secret配置  这里需要切换为自己的id和secret -->
-        <meta-data android:name="client_id" android:value="7c56b43a18b3f1b5"/>
-        <meta-data android:name="client_secret" android:value="d0b53dd3c83cacd21d715079d27f8459"/>
+        <meta-data android:name="client_id" android:value="yourClientId"/>
+        <meta-data android:name="client_secret" android:value="yourSecret"/>
     </application>
 
 </manifest>
